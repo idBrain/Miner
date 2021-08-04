@@ -6,6 +6,7 @@
 #ifndef CRYPTOPP_SHA_H
 #define CRYPTOPP_SHA_H
 #include <stdlib.h>
+#include <cassert>
 
 namespace CryptoPP
 {
