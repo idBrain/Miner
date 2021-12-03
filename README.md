@@ -6,7 +6,7 @@ This program is an analog to a Bitcoin miner. It receives a string of characters
 
 The program has double hash SHA256 feature that is present in Bitcoin and also has a granular choosing for the difficulty wich doubles at each increased step. And accepts general strings as input.
 
-##Goal
+## Goal
 
 Fun.
 
