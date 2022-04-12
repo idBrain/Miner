@@ -29,21 +29,15 @@ int main(){
 	while (nonce < 0x1000000){
 		std::string s2=s+hex32rev(nonce);
 		++nonce;
-		SHA256 sha,sha2;
-		sha.update(s2);
-		uint8_t * digest = sha.digest();
-		sha2.update(digest,32);
-		uint8_t * digest2 = sha2.digest();
+		std::string hash = DoubleSHA(s2);
+		std::string revhash = byterev(hash);
 		
-		if (byterev(SHA256::toString(digest2)) <Target(n).GetHex()){
+		if (revhash <Target(n).GetHex()){
 			std::cout << "\nThe winning ticket is: " << s2 << std::endl;
 			std::cout << "Target: " << Target(n).GetHex() << std::endl;
-			std::cout << "Hash:   " << SHA256::toString(digest2) << std::endl;
+			std::cout << "Hash:   " << revhash << std::endl;
 			goto end;
 		}
-		
-		delete[] digest;
-		delete[] digest2;
 	}
 
 	std::cout << "\nTarget: " << Target(n).GetHex() << std::endl;

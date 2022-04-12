@@ -2,6 +2,7 @@
 #include <cstring>
 #include <vector>
 #include <iomanip>
+#include "SHA256.h"
 #include "uint256.h"
 #include "func.h"
 
@@ -11,6 +12,15 @@ uint256 Target(uint n){
 	for(uint i=0; i<=j;++i)
 		diff+=diff;
 	return diff;
+}
+
+std::string DoubleSHA(std::string& data){
+	SHA256 sha,sha2;
+	sha.update(data);
+	uint8_t * digest = sha.digest();
+	sha2.update(digest,32);
+	uint8_t * digest2 = sha2.digest();
+	return SHA256::toString(digest2);
 }
 
 std::string hex32rev(uint32_t n){
